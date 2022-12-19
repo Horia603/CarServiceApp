@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="LoginForm">
+  <grid id="27dc6" binding="LoginPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="-35" y="20" width="1119" height="874"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="false"/>
+      <background color="-12723969"/>
+      <inheritsPopupMenu value="false"/>
+      <maximumSize width="350" height="350"/>
+      <minimumSize width="350" height="350"/>
+      <preferredSize width="350" height="350"/>
+      <requestFocusEnabled value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="8e8a6" layout-manager="GridLayoutManager" row-count="17" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12723969"/>
+          <foreground color="-1310712"/>
+          <inheritsPopupMenu value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="52ffe" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Bodoni MT Black" size="30" style="1"/>
+              <foreground color="-1310712"/>
+              <name value="EmailLabel"/>
+              <opaque value="false"/>
+              <text value="Email:"/>
+            </properties>
+          </component>
+          <vspacer id="f4ff9">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="e64f4">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="eb888" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Bodoni MT Black" size="30" style="1"/>
+              <foreground color="-1310712"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <name value="LoginLabel"/>
+              <requestFocusEnabled value="true"/>
+              <text value="Please Login"/>
+            </properties>
+          </component>
+          <component id="9e7e1" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="490" height="53"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Bodoni MT Black" size="36" style="1"/>
+              <foreground color="-1310712"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <inheritsPopupMenu value="true"/>
+              <name value="TitleLabel"/>
+              <text value="Welcome to Vericu Tuning"/>
+            </properties>
+          </component>
+          <vspacer id="82aa0">
+            <constraints>
+              <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="11" height="22"/>
+              </grid>
+            </constraints>
+          </vspacer>
+          <component id="f5016" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Bodoni MT Black" size="30" style="1"/>
+              <foreground color="-1310712"/>
+              <name value="PasswordLabel"/>
+              <text value="Password:"/>
+            </properties>
+          </component>
+          <vspacer id="4480b">
+            <constraints>
+              <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="1b0d8" class="javax.swing.JPasswordField" binding="PasswordField">
+            <constraints>
+              <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="14"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <caretColor color="-16777216"/>
+              <foreground color="-16777216"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="c0255" class="javax.swing.JButton" binding="LoginButton">
+            <constraints>
+              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <font name="Bodoni MT Black" size="16" style="0"/>
+              <foreground color="-16777216"/>
+              <text value="Login"/>
+            </properties>
+          </component>
+          <vspacer id="419fd">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="10" height="5"/>
+              </grid>
+            </constraints>
+          </vspacer>
+          <component id="f8509" class="javax.swing.JTextField" binding="EmailField">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="14"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <foreground color="-16777216"/>
+            </properties>
+          </component>
+          <component id="4c4bf" class="javax.swing.JLabel" binding="SignUpLabel">
+            <constraints>
+              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="360" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Bodoni MT Black" size="20" style="1"/>
+              <foreground color="-1310712"/>
+              <horizontalAlignment value="0"/>
+              <text value="If you don't have an acount SignUp:"/>
+            </properties>
+          </component>
+          <component id="32961" class="javax.swing.JButton" binding="SignUpButton">
+            <constraints>
+              <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <borderPainted value="true"/>
+              <font name="Bodoni MT Black" size="16" style="1"/>
+              <foreground color="-16777216"/>
+              <hideActionText value="false"/>
+              <inheritsPopupMenu value="false"/>
+              <label value="SignUp"/>
+              <text value="SignUp"/>
+            </properties>
+          </component>
+          <vspacer id="34825">
+            <constraints>
+              <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="10"/>
+              </grid>
+            </constraints>
+          </vspacer>
+          <component id="4c96d" class="javax.swing.JLabel" binding="ImageLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="400" height="200"/>
+                <preferred-size width="400" height="200"/>
+                <maximum-size width="400" height="200"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <icon value="car8.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <vspacer id="33c8e">
+            <constraints>
+              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
