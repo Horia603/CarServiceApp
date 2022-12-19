@@ -41,6 +41,13 @@ public class LoginForm extends JDialog {
                 }
             }
         });
+        SignUpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegisterForm loginForm = new RegisterForm(null);
+                dispose();
+            }
+        });
         setVisible(true);
     }
 

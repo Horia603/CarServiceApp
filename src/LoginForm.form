@@ -124,7 +124,7 @@
               <background color="-1"/>
               <borderPainted value="true"/>
               <contentAreaFilled value="true"/>
-              <font name="Bodoni MT Black" size="16" style="0"/>
+              <font name="Bodoni MT Black" size="18" style="0"/>
               <foreground color="-16777216"/>
               <text value="Login"/>
             </properties>
@@ -149,14 +149,17 @@
           </component>
           <component id="4c4bf" class="javax.swing.JLabel" binding="SignUpLabel">
             <constraints>
-              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="360" height="50"/>
               </grid>
             </constraints>
             <properties>
-              <font name="Bodoni MT Black" size="20" style="1"/>
+              <font name="Bodoni MT Black" size="24" style="1"/>
               <foreground color="-1310712"/>
-              <horizontalAlignment value="0"/>
+              <horizontalAlignment value="10"/>
+              <horizontalTextPosition value="11"/>
+              <opaque value="false"/>
+              <requestFocusEnabled value="true"/>
               <text value="If you don't have an acount SignUp:"/>
             </properties>
           </component>
@@ -167,7 +170,7 @@
             <properties>
               <background color="-1"/>
               <borderPainted value="true"/>
-              <font name="Bodoni MT Black" size="16" style="1"/>
+              <font name="Bodoni MT Black" size="18" style="1"/>
               <foreground color="-16777216"/>
               <hideActionText value="false"/>
               <inheritsPopupMenu value="false"/>
