@@ -37,6 +37,7 @@ public class LoginForm extends JDialog {
                     "Email or Password invalid",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
+                    dispose();
                 }
             }
         });

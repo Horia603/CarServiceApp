@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Added DataBase">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql-connector-j-8.0.31.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LoginForm.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LoginForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/car8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarServiceDataBase.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CarServiceDataBase.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Login Functionality" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671320988941</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Login Functionality">
+      <created>1671489011689</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671489011689</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,6 +116,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Project Created" />
     <MESSAGE value="Added DataBase" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added DataBase" />
+    <MESSAGE value="Login Functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login Functionality" />
   </component>
 </project>
