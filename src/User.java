@@ -3,6 +3,6 @@ public class User {
     public String password;
     public String name;
     public String surname;
-    public Integer age;
+    public String age;
     public String phone_number;
 }

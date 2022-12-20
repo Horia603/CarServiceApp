@@ -28,7 +28,6 @@ public class LoginForm extends JDialog {
                 String email = EmailField.getText();
                 String password = String.valueOf(PasswordField.getPassword());
                 user = getAuthenticatedUser(email, password);
-                setVisible(false);
                 if(user!=null) {
                     dispose();
                 }
@@ -44,8 +43,8 @@ public class LoginForm extends JDialog {
         SignUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegisterForm loginForm = new RegisterForm(null);
                 dispose();
+                RegisterForm loginForm = new RegisterForm(null);
             }
         });
         setVisible(true);
@@ -75,7 +74,7 @@ public class LoginForm extends JDialog {
                 user.password = resultSet.getString("password");
                 user.name = resultSet.getString("name");
                 user.surname = resultSet.getString("surname");
-                user.age = resultSet.getInt("age");
+                user.age = resultSet.getString("age");
                 user.phone_number = resultSet.getString("phone_number");
             }
             stmt.close();
