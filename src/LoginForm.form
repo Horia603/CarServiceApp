@@ -77,7 +77,7 @@
               <horizontalTextPosition value="0"/>
               <inheritsPopupMenu value="true"/>
               <name value="TitleLabel"/>
-              <text value="Welcome to Vericu Tuning"/>
+              <text value="Welcome to My Service"/>
             </properties>
           </component>
           <vspacer id="82aa0">
@@ -185,6 +185,11 @@
               </grid>
             </constraints>
           </vspacer>
+          <vspacer id="33c8e">
+            <constraints>
+              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
           <component id="4c96d" class="javax.swing.JLabel" binding="ImageLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
@@ -200,11 +205,6 @@
               <text value=""/>
             </properties>
           </component>
-          <vspacer id="33c8e">
-            <constraints>
-              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
         </children>
       </grid>
     </children>

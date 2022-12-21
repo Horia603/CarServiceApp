@@ -28,23 +28,21 @@ public class LoginForm extends JDialog {
                 String email = EmailField.getText();
                 String password = String.valueOf(PasswordField.getPassword());
                 user = getAuthenticatedUser(email, password);
-                if(user!=null) {
-                    dispose();
-                }
-                else {
+                if(user==null) {
                     JOptionPane.showMessageDialog(LoginForm.this,
-                    "Email or Password invalid",
+                            "Email or Password invalid",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
-                    dispose();
                 }
+                dispose();
+                MainPageForm homePageForm=new MainPageForm(null);
             }
         });
         SignUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                RegisterForm loginForm = new RegisterForm(null);
+                RegisterForm roginForm = new RegisterForm(null);
             }
         });
         setVisible(true);
@@ -69,6 +67,7 @@ public class LoginForm extends JDialog {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
+                dispose();
                 user = new User();
                 user.email = resultSet.getString("email");
                 user.password = resultSet.getString("password");

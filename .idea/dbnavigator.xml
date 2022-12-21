@@ -20,9 +20,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="1706c209-903b-43a9-af4b-9564778082df" object-ref="schemas/sys/tables/users" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="1706c209-903b-43a9-af4b-9564778082df" dataset="sys.car" active-filter-id="EMPTY_FILTER" />
@@ -30,6 +28,7 @@
     <filter-actions connection-id="1706c209-903b-43a9-af4b-9564778082df" dataset="sys.issues" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="1706c209-903b-43a9-af4b-9564778082df" dataset="sys.users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="1706c209-903b-43a9-af4b-9564778082df" dataset="sys.user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="1706c209-903b-43a9-af4b-9564778082df" dataset="sys.appointments" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />

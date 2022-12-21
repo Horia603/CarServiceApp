@@ -82,18 +82,33 @@ public class RegisterForm extends JDialog{
                     Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
                     Statement stmt = conn.createStatement();
-                    String sql = "INSERT INTO users (email, password, name, surname, age, phone_number) " +
+                    String sql_verify_user="SELECT * FROM users WHERE email=? AND password=?";
+                    String sql_add_user = "INSERT INTO users (email, password, name, surname, age, phone_number) " +
                             "VALUES (?, ?, ?, ?, ?, ?)";
-                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                    preparedStatement.setString(1, user.email);
-                    preparedStatement.setString(2, user.password);
-                    preparedStatement.setString(3, user.name);
-                    preparedStatement.setString(4, user.surname);
-                    preparedStatement.setString(5, user.age);
-                    preparedStatement.setString(6, user.phone_number);
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql_verify_user);
+                    preparedStatement.setString(1,user.email);
+                    preparedStatement.setString(2,user.password);
 
-                    //Insert row into the table
-                    int addedRows = preparedStatement.executeUpdate();
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+                    if (resultSet.next()) {
+                        JOptionPane.showMessageDialog(RegisterForm.this,
+                                "Account already exist",
+                                "Try again",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        preparedStatement = conn.prepareStatement(sql_add_user);
+                        preparedStatement.setString(1, user.email);
+                        preparedStatement.setString(2, user.password);
+                        preparedStatement.setString(3, user.name);
+                        preparedStatement.setString(4, user.surname);
+                        preparedStatement.setString(5, user.age);
+                        preparedStatement.setString(6, user.phone_number);
+
+                        //Insert row into the table
+                        int addedRows = preparedStatement.executeUpdate();
+                    }
 
                     stmt.close();
                     conn.close();
@@ -106,6 +121,5 @@ public class RegisterForm extends JDialog{
 
         setVisible(true);
     }
-
 
 }
