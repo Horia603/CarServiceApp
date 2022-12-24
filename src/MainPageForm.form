@@ -42,6 +42,7 @@
           <background color="-12723969"/>
           <font name="Bodoni MT Black" size="24" style="1"/>
           <foreground color="-1310712"/>
+          <verticalScrollBarPolicy value="21"/>
         </properties>
         <border type="none"/>
         <children>
@@ -54,7 +55,9 @@
               <font name="Bodoni MT Black" size="14" style="1"/>
               <foreground color="-16777216"/>
               <gridColor color="-16777216"/>
-              <selectionBackground color="-12723969"/>
+              <rowHeight value="41"/>
+              <rowMargin value="0"/>
+              <selectionBackground color="-16711936"/>
               <selectionForeground color="-16777216"/>
             </properties>
           </component>

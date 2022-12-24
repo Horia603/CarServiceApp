@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="SignUp Functionality">
-      <change afterPath="$PROJECT_DIR$/src/MainPageForm.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainPageForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="MainPage Added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegisterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainPageForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainPageForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671501349011</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="MainPage Added">
+      <created>1671587765956</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671587765956</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,6 +151,7 @@
     <MESSAGE value="Login Functionality" />
     <MESSAGE value="SignUp Window Added" />
     <MESSAGE value="SignUp Functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="SignUp Functionality" />
+    <MESSAGE value="MainPage Added" />
+    <option name="LAST_COMMIT_MESSAGE" value="MainPage Added" />
   </component>
 </project>

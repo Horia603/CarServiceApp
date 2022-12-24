@@ -1,6 +1,9 @@
+import org.w3c.dom.css.RGBColor;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -17,6 +20,10 @@ public class MainPageForm extends JDialog{
                 return false;
             }
         };
+        JTableHeader tableHead=WeekTable.getTableHeader();
+        tableHead.setBackground(new Color(0,0,200,150));
+        tableHead.setFont(new Font("Bodoni MT Black",Font.BOLD,20));
+        WeekTable.setFont(new Font("Bodoni MT Black", Font.BOLD, 20));
         WeekTable.setModel(new DefaultTableModel(
                 new Object[][]{},
                 new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"}
@@ -35,6 +42,7 @@ public class MainPageForm extends JDialog{
         DefaultTableModel dtm=(DefaultTableModel) WeekTable.getModel();
         DefaultTableCellRenderer centerRenderer=(DefaultTableCellRenderer) WeekTable.getDefaultRenderer(Object.class);
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        WeekTable.setCellSelectionEnabled(true);
 
         for(int i=0;i<12;i++)
         {
