@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Appointments Table Update">
-      <change afterPath="$PROJECT_DIR$/src/Appointment.java" afterDir="false" />
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Appointments Vector Created">
+      <change afterPath="$PROJECT_DIR$/src/TableColorCellRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainPageForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainPageForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

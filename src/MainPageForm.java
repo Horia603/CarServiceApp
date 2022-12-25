@@ -42,24 +42,6 @@ public class MainPageForm extends JDialog{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         DefaultTableModel dtm=(DefaultTableModel) WeekTable.getModel();
-        DefaultTableCellRenderer centerRenderer=(DefaultTableCellRenderer) WeekTable.getDefaultRenderer(Object.class);
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        WeekTable.setCellSelectionEnabled(true);
-
-        for(int i=0;i<24;i++)
-        {
-            String ora;
-            if(i%2==0)
-            {
-                ora=Integer.toString(i+8-i/2)+":00 - " + Integer.toString(i+8-i/2)+":30";
-            }
-            else
-            {
-                ora=Integer.toString(i+7-i/2)+":30 - " + Integer.toString(i+8-i/2)+":00";
-            }
-            String row[]={ora,ora,ora,ora,ora};
-            dtm.addRow(row);
-        }
 
         Vector<Appointment> appointments = new Vector<Appointment>();
 
@@ -91,18 +73,55 @@ public class MainPageForm extends JDialog{
             e.printStackTrace();
         }
 
-        for(int i=0;i<appointments.size();i++)
-        {
+        TableColorCellRenderer renderer=new TableColorCellRenderer();
+        renderer.setAppointments(appointments);
+        WeekTable.setDefaultRenderer(Object.class,renderer);
 
+        //DefaultTableCellRenderer centerRenderer=(DefaultTableCellRenderer) WeekTable.getDefaultRenderer(Object.class);
+        // centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        WeekTable.setCellSelectionEnabled(true);
+
+        for(int i=0;i<24;i++)
+        {
+            String ora;
+            if(i%2==0)
+            {
+                int x=i+8-i/2;
+                String s="";
+                if(x<10)
+                    s="0";
+                ora=s+Integer.toString(x)+":00 - " + s+Integer.toString(x)+":30";
+            }
+            else
+            {
+                int x=i+7-i/2;
+                String s1="",s2="";
+                if(x<10)
+                    s1="0";
+                if(x<9)
+                    s2="0";
+                ora=s1+Integer.toString(x)+":30 - " + s2+Integer.toString(x+1)+":00";
+            }
+            String row[]={ora,ora,ora,ora,ora};
+            dtm.addRow(row);
         }
+
         setVisible(true);
         WeekTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
                 super.mouseClicked(e);
+                Point point = e.getPoint();
+                int column = WeekTable.columnAtPoint(point);
+                int row = WeekTable.rowAtPoint(point);
+
+                /*Component c = WeekTable.getCellRenderer(row, column).getTableCellRendererComponent(WeekTable, null, false, true, row, column);
+                if(c.getBackground()==Color.WHITE)
+                {
+                    c.setBackground(Color.GREEN);
+                }*/
             }
         });
     }
-
 }
