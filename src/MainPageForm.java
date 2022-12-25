@@ -44,6 +44,7 @@ public class MainPageForm extends JDialog{
         DefaultTableModel dtm=(DefaultTableModel) WeekTable.getModel();
 
         Vector<Appointment> appointments = new Vector<Appointment>();
+        boolean [][] WeekMatrix =new boolean [24][5];
 
         final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
         final String USERNAME = "root";
@@ -73,8 +74,66 @@ public class MainPageForm extends JDialog{
             e.printStackTrace();
         }
 
+        for(int i=0;i<24;i++)
+        {
+            for(int j=0;j<5;j++)
+            {
+                WeekMatrix[i][j]=false;
+            }
+        }
+
+        for(int i=0;i<appointments.size();i++)
+        {
+            int start_row=FindRow(appointments.get(i).start_hour);
+            int start_column=FindColumn(appointments.get(i).start_day);
+            String s=appointments.get(i).finish_hour;
+            String substring="";
+            if(s.charAt(3)=='3')
+            {
+                substring=s.substring(0,3);
+                substring+="00";
+            }
+            else
+            {
+                int hour=Integer.parseInt(s.substring(0,2));
+                hour-=1;
+                if(hour<10)
+                {
+                    substring="0"+Integer.toString(hour);
+                }
+                else
+                {
+                    substring=Integer.toString(hour);
+                }
+                substring+=":30";
+            }
+            int finish_row=FindRow(substring);
+            int finish_column=FindColumn(appointments.get(i).finish_day);
+            WeekMatrix[start_row][start_column]=true;
+            while(start_row!=finish_row || start_column!=finish_column)
+            {
+                if(start_row==24)
+                {
+                    start_row=0;
+                    if(start_column==5)
+                    {
+                        start_column=0;
+                    }
+                    else
+                    {
+                        start_column+=1;
+                    }
+                }
+                else
+                {
+                    start_row+=1;
+                }
+                WeekMatrix[start_row][start_column]=true;
+            }
+        }
+
         TableColorCellRenderer renderer=new TableColorCellRenderer();
-        renderer.setAppointments(appointments);
+        renderer.setAppointments(WeekMatrix);
         WeekTable.setDefaultRenderer(Object.class,renderer);
 
         //DefaultTableCellRenderer centerRenderer=(DefaultTableCellRenderer) WeekTable.getDefaultRenderer(Object.class);
@@ -107,6 +166,8 @@ public class MainPageForm extends JDialog{
         }
 
         setVisible(true);
+
+
         WeekTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -123,5 +184,46 @@ public class MainPageForm extends JDialog{
                 }*/
             }
         });
+    }
+
+    public int FindRow(String s){
+        int row=-1;
+        int hour=0;
+        if(s.charAt(3)=='0')
+        {
+            hour=Integer.parseInt(s.substring(0,2));
+            row=(hour-8)*2;
+        }
+        else{
+            hour=Integer.parseInt(s.substring(0,2));
+            row=(hour-8)*2+1;
+        }
+        return row;
+    }
+    public int FindColumn(String s){
+        int column=-1;
+        switch(s){
+            case "Monday": {
+                column = 0;
+                break;
+            }
+            case "Tuesday": {
+                column = 1;
+                break;
+            }
+            case "Wednesday": {
+                column = 2;
+                break;
+            }
+            case "Thursday": {
+                column = 3;
+                break;
+            }
+            case "Friday": {
+                column = 4;
+                break;
+            }
+        }
+        return column;
     }
 }

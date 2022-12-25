@@ -7,23 +7,22 @@ import java.util.Vector;
 public class TableColorCellRenderer implements TableCellRenderer {
 
     private static final TableCellRenderer renderer=new DefaultTableCellRenderer();
-    private Vector<Appointment> appointments=new Vector<Appointment>();
+    private boolean [][] WeekMatrix =new boolean [24][5];
 
-    public void setAppointments(Vector<Appointment> appointments1){
-        appointments=appointments1;
+    public void setAppointments(boolean [][] appointments){
+        WeekMatrix=appointments;
     }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component c=renderer.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
 
-        if(isSelected)
-        {
-            c.setBackground(Color.GREEN);
-        }
-        else if (row==1 && column==1)
+        if(WeekMatrix[row][column]==true)
         {
             c.setBackground(Color.RED);
+        } else if (isSelected)
+        {
+            c.setBackground(Color.GREEN);
         }
         else
         {
