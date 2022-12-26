@@ -39,7 +39,7 @@ public class LoginForm extends JDialog {
                 }
                 else {
                     dispose();
-                    MainPageForm homePageForm=new MainPageForm(null);
+                    MainPageForm homePageForm=new MainPageForm(null, user);
                 }
             }
         });
@@ -74,6 +74,7 @@ public class LoginForm extends JDialog {
             if (resultSet.next()) {
                 dispose();
                 user = new User();
+                user.id=Integer.parseInt(resultSet.getString("user_id"));
                 user.email = resultSet.getString("email");
                 user.password = resultSet.getString("password");
                 user.name = resultSet.getString("name");

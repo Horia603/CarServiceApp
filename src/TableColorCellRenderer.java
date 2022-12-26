@@ -7,9 +7,9 @@ import java.util.Vector;
 public class TableColorCellRenderer extends DefaultTableCellRenderer {
 
     private static final TableCellRenderer renderer=new DefaultTableCellRenderer();
-    private boolean [][] WeekMatrix =new boolean [24][5];
+    private char [][] WeekMatrix =new char [24][5];
 
-    public void setAppointments(boolean [][] appointments){
+    public void setAppointments(char [][] appointments){
         WeekMatrix=appointments;
     }
 
@@ -19,9 +19,12 @@ public class TableColorCellRenderer extends DefaultTableCellRenderer {
 
         c.setHorizontalAlignment(JLabel.CENTER);
 
-        if(WeekMatrix[row][column]==true)
+        if(WeekMatrix[row][column]=='1')
         {
             c.setBackground(Color.RED);
+        } else if (WeekMatrix[row][column]=='2')
+        {
+            c.setBackground(new Color(43, 90, 255));
         } else if (isSelected)
         {
             c.setBackground(Color.GREEN);

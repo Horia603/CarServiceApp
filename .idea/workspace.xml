@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Display appointments in table">
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="HomePage Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainPageForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainPageForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegisterForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TableColorCellRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TableColorCellRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671993290856</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="HomePage Update">
+      <created>1672079513956</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672079513956</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,6 +185,7 @@
     <MESSAGE value="Appointments Table Update" />
     <MESSAGE value="Appointments Table Color Renderer Created" />
     <MESSAGE value="Display appointments in table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Display appointments in table" />
+    <MESSAGE value="HomePage Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="HomePage Update" />
   </component>
 </project>
