@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.Collections;
 
 public class RegisterForm extends JDialog{
     private JPanel RegisterPanel;
@@ -30,6 +31,8 @@ public class RegisterForm extends JDialog{
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("./src/car8.png");
+        setIconImages(Collections.singletonList(icon.getImage()));
         LoginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,7 +72,6 @@ public class RegisterForm extends JDialog{
                             "All field must not be empty",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
-                    dispose();
                 }
             }
 

@@ -1,14 +1,14 @@
-import org.w3c.dom.css.RGBColor;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.net.URL;
 import java.sql.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 public class MainPageForm extends JDialog{
@@ -34,9 +34,16 @@ public class MainPageForm extends JDialog{
 
     public MainPageForm(JFrame parent){
         super(parent);
-        setTitle("Register");
+        setTitle("MainPage");
+        setLocation(0,0);
         setContentPane(MainPagePanel);
-        setMinimumSize(new Dimension(1500, 800));
+
+        ImageIcon icon = new ImageIcon("./src/car8.png");
+        setIconImages(Collections.singletonList(icon.getImage()));
+
+        setSize(new Dimension((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()),(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-33)));
+        setResizable(false);
+
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -139,6 +146,9 @@ public class MainPageForm extends JDialog{
         //DefaultTableCellRenderer centerRenderer=(DefaultTableCellRenderer) WeekTable.getDefaultRenderer(Object.class);
         // centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         WeekTable.setCellSelectionEnabled(true);
+        WeekTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        WeekTable.getTableHeader().setReorderingAllowed(false);
+        WeekTable.getTableHeader().setResizingAllowed(false);
 
         for(int i=0;i<24;i++)
         {

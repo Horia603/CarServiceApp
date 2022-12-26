@@ -4,7 +4,7 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.Vector;
 
-public class TableColorCellRenderer implements TableCellRenderer {
+public class TableColorCellRenderer extends DefaultTableCellRenderer {
 
     private static final TableCellRenderer renderer=new DefaultTableCellRenderer();
     private boolean [][] WeekMatrix =new boolean [24][5];
@@ -15,7 +15,9 @@ public class TableColorCellRenderer implements TableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        Component c=renderer.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+        JLabel c=(JLabel)renderer.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+
+        c.setHorizontalAlignment(JLabel.CENTER);
 
         if(WeekMatrix[row][column]==true)
         {

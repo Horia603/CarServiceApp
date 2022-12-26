@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.Collections;
 
 public class LoginForm extends JDialog {
     private JLabel ImageLabel;
@@ -21,6 +22,8 @@ public class LoginForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("./src/car8.png");
+        setIconImages(Collections.singletonList(icon.getImage()));
 
         LoginButton.addActionListener(new ActionListener() {
             @Override
@@ -34,8 +37,10 @@ public class LoginForm extends JDialog {
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
                 }
-                dispose();
-                MainPageForm homePageForm=new MainPageForm(null);
+                else {
+                    dispose();
+                    MainPageForm homePageForm=new MainPageForm(null);
+                }
             }
         });
         SignUpButton.addActionListener(new ActionListener() {
