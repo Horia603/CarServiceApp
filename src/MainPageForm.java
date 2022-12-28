@@ -12,6 +12,7 @@ public class MainPageForm extends JDialog{
     private JTable WeekTable;
     private JPanel MainPagePanel;
     private User loggedUser=new User();
+    final private int hours_worked=8;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -50,7 +51,7 @@ public class MainPageForm extends JDialog{
 
         loggedUser=user;
         Vector<Appointment> appointments = new Vector<Appointment>();
-        char [][] WeekMatrix =new char [24][5];
+        char [][] WeekMatrix =new char [hours_worked*2][5];
 
         final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
         final String USERNAME = "root";
@@ -94,7 +95,7 @@ public class MainPageForm extends JDialog{
             e.printStackTrace();
         }
 
-        for(int i=0;i<24;i++)
+        for(int i=0;i<hours_worked*2;i++)
         {
             for(int j=0;j<5;j++)
             {
@@ -137,7 +138,7 @@ public class MainPageForm extends JDialog{
             }
             while(start_row!=finish_row || start_column!=finish_column)
             {
-                if(start_row==24)
+                if(start_row==hours_worked*2)
                 {
                     start_row=0;
                     if(start_column==5)
@@ -164,6 +165,14 @@ public class MainPageForm extends JDialog{
 
         TableColorCellRenderer renderer=new TableColorCellRenderer();
         renderer.setAppointments(WeekMatrix);
+        renderer.setHours_worked(hours_worked);
+        //WeekTable.setPreferredSize(new Dimension(500,(getHeight()/2/(hours_worked*2)+hours_worked/3)*hours_worked*2));
+        //WeekTable.setRowHeight(getHeight()/2/(hours_worked*2)+hours_worked/3);
+        if(hours_worked==8){
+            WeekTable.setRowHeight(38);
+        } else if (hours_worked==12) {
+            WeekTable.setRowHeight(25);
+        }
         WeekTable.setDefaultRenderer(Object.class,renderer);
 
         //DefaultTableCellRenderer centerRenderer=(DefaultTableCellRenderer) WeekTable.getDefaultRenderer(Object.class);
@@ -173,7 +182,7 @@ public class MainPageForm extends JDialog{
         WeekTable.getTableHeader().setReorderingAllowed(false);
         WeekTable.getTableHeader().setResizingAllowed(false);
 
-        for(int i=0;i<24;i++)
+        for(int i=0;i<hours_worked*2;i++)
         {
             String ora;
             if(i%2==0)

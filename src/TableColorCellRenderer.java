@@ -7,11 +7,13 @@ import java.util.Vector;
 public class TableColorCellRenderer extends DefaultTableCellRenderer {
 
     private static final TableCellRenderer renderer=new DefaultTableCellRenderer();
-    private char [][] WeekMatrix =new char [24][5];
+    private int hours_worked;
+    private char [][] WeekMatrix =new char [hours_worked*2][5];
 
     public void setAppointments(char [][] appointments){
         WeekMatrix=appointments;
     }
+    public void setHours_worked(int hours){hours_worked=hours;}
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
