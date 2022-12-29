@@ -28,6 +28,12 @@ public class MainPageForm extends JDialog{
         JTableHeader tableHead=WeekTable.getTableHeader();
         tableHead.setBackground(new Color(0,0,200,150));
         tableHead.setFont(new Font("Bodoni MT Black",Font.BOLD,20));
+        if(hours_worked==8){
+            tableHead.setPreferredSize(new Dimension(50,37));
+        }
+        if(hours_worked==12){
+            tableHead.setPreferredSize(new Dimension(50,30));
+        }
         WeekTable.setFont(new Font("Bodoni MT Black", Font.BOLD, 20));
         WeekTable.setModel(new DefaultTableModel(
                 new Object[][]{},
@@ -179,10 +185,10 @@ public class MainPageForm extends JDialog{
         TableColorCellRenderer renderer=new TableColorCellRenderer();
         renderer.setAppointments(WeekMatrix);
         renderer.setHours_worked(hours_worked);
-        //WeekTable.setPreferredSize(new Dimension(500,(getHeight()/2/(hours_worked*2)+hours_worked/3)*hours_worked*2));
-        //WeekTable.setRowHeight(getHeight()/2/(hours_worked*2)+hours_worked/3);
+
         if(hours_worked==8){
-            WeekTable.setRowHeight(38);
+            WeekTable.setRowHeight(37);
+            WeekTable.setPreferredSize(new Dimension(-1,593));
         } else if (hours_worked==12) {
             WeekTable.setRowHeight(25);
         }
@@ -223,17 +229,11 @@ public class MainPageForm extends JDialog{
         WeekTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 super.mouseClicked(e);
                 Point point = e.getPoint();
                 int column = WeekTable.columnAtPoint(point);
                 int row = WeekTable.rowAtPoint(point);
 
-                /*Component c = WeekTable.getCellRenderer(row, column).getTableCellRendererComponent(WeekTable, null, false, true, row, column);
-                if(c.getBackground()==Color.WHITE)
-                {
-                    c.setBackground(Color.GREEN);
-                }*/
             }
         });
         PreviousButton.addActionListener(new ActionListener() {

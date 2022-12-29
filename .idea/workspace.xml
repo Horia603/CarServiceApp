@@ -4,23 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Modified table for 8 hours">
-      <change afterPath="$PROJECT_DIR$/src/NextArrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PreviousArrow.png" afterDir="false" />
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Next and Previous arrows added">
+      <change afterPath="$PROJECT_DIR$/src/NextArrowBig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/NextArrowSmall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PreviousArrowBig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PreviousArrowSmall.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainPageForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainPageForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegisterForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/car.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/car2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/car3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/car8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NextArrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/NextArrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PreviousArrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/PreviousArrow.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672238065543</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Next and Previous arrows added">
+      <created>1672272380607</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672272380607</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,6 +213,7 @@
     <MESSAGE value="HomePage Update" />
     <MESSAGE value="Display user appointments with different color and database reworked" />
     <MESSAGE value="Modified table for 8 hours" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified table for 8 hours" />
+    <MESSAGE value="Next and Previous arrows added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Next and Previous arrows added" />
   </component>
 </project>
