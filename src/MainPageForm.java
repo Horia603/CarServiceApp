@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.*;
@@ -11,6 +13,8 @@ import java.util.Vector;
 public class MainPageForm extends JDialog{
     private JTable WeekTable;
     private JPanel MainPagePanel;
+    private JButton NextButton;
+    private JButton PreviousButton;
     private User loggedUser=new User();
     final private int hours_worked=8;
 
@@ -37,7 +41,7 @@ public class MainPageForm extends JDialog{
         setLocation(0,0);
         setContentPane(MainPagePanel);
 
-        ImageIcon icon = new ImageIcon("./src/car8.png");
+        ImageIcon icon = new ImageIcon("./src/car.png");
         setIconImages(Collections.singletonList(icon.getImage()));
 
         setSize(new Dimension((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()),(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-33)));
@@ -48,6 +52,15 @@ public class MainPageForm extends JDialog{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         DefaultTableModel dtm=(DefaultTableModel) WeekTable.getModel();
+
+        ImageIcon PreviousArrow = new ImageIcon("./src/PreviousArrow.png");
+        ImageIcon NextArrow = new ImageIcon("./src/NextArrow.png");
+        PreviousButton.setIcon(PreviousArrow);
+        NextButton.setIcon(NextArrow);
+        PreviousButton.setContentAreaFilled(false);
+        NextButton.setContentAreaFilled(false);
+        PreviousButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        NextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         loggedUser=user;
         Vector<Appointment> appointments = new Vector<Appointment>();
@@ -207,9 +220,6 @@ public class MainPageForm extends JDialog{
             dtm.addRow(row);
         }
 
-        setVisible(true);
-
-
         WeekTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -226,6 +236,20 @@ public class MainPageForm extends JDialog{
                 }*/
             }
         });
+        PreviousButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        NextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        setVisible(true);
     }
 
     private int FindRow(String s){

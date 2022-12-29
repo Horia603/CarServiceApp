@@ -31,8 +31,10 @@ public class RegisterForm extends JDialog{
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("./src/car8.png");
+        ImageIcon icon = new ImageIcon("./src/car.png");
         setIconImages(Collections.singletonList(icon.getImage()));
+        LoginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        RegisterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         LoginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -201,7 +201,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <icon value="car8.png"/>
+              <icon value="car.png"/>
               <text value=""/>
             </properties>
           </component>

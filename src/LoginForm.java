@@ -22,8 +22,10 @@ public class LoginForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("./src/car8.png");
+        ImageIcon icon = new ImageIcon("./src/car.png");
         setIconImages(Collections.singletonList(icon.getImage()));
+        LoginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        SignUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         LoginButton.addActionListener(new ActionListener() {
             @Override
