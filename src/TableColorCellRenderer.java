@@ -29,16 +29,7 @@ public class TableColorCellRenderer extends DefaultTableCellRenderer {
 
         c.setHorizontalAlignment(JLabel.CENTER);
 
-        if(column==5&&row>hours_worked_on_saturday*2-1)
-        {
-            c.setBackground(new Color(252, 46, 46));
-            c.setBorder(new MatteBorder(0, 1, 1, 0, Color.black));
-        } else if(column==6&&row>hours_worked_on_sunday*2-1)
-        {
-            c.setBackground(new Color(252, 46, 46));
-            c.setBorder(new MatteBorder(0, 1, 1, 0, Color.black));
-
-        }else if(WeekMatrix[current_week][row][column]=="1")
+       if(WeekMatrix[current_week][row][column]=="1")
         {
             c.setBackground(new Color(252, 46, 46));
             c.setBorder(new MatteBorder(0, 1, 1, 0, Color.black));

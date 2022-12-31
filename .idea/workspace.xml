@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Modified Table for 8 and 12 hours program">
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Added tables for 1 year">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Appointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainPageForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TableColorCellRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TableColorCellRenderer.java" afterDir="false" />
     </list>
@@ -187,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672278128915</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added tables for 1 year">
+      <created>1672447875307</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1672447875307</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -217,15 +224,16 @@
     <MESSAGE value="Modified table for 8 hours" />
     <MESSAGE value="Next and Previous arrows added" />
     <MESSAGE value="Modified Table for 8 and 12 hours program" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Table for 8 and 12 hours program" />
+    <MESSAGE value="Added tables for 1 year" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tables for 1 year" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/TableColorCellRenderer.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/src/MainPageForm.java</url>
+          <line>308</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
