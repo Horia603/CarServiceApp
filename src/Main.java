@@ -1,8 +1,10 @@
+
 public class Main {
     public static void main(String[] args) {
 
         LoginForm loginForm = new LoginForm(null);
         User user = loginForm.user;
+
         if (user != null) {
             System.out.println("          Email: " + user.email);
             System.out.println("          Password: " + user.password);
