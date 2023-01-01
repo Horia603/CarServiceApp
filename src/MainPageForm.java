@@ -28,9 +28,10 @@ public class MainPageForm extends JDialog{
     final private int hours_worked_on_Sunday=0;
     private int current_day;
     private int current_week=0;
-
-    private Vector<Appointment> appointments = new Vector<Appointment>();
-    private String [][][] WeekMatrix =new String [53][hours_worked*2+1][7];
+    final private int number_of_weeks=53;
+    private String [][] Tables_head=new String [number_of_weeks][7];
+    private Vector<Appointment> appointments;
+    private char [][][] WeekMatrix =new char [number_of_weeks][hours_worked*2][7];
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -77,73 +78,12 @@ public class MainPageForm extends JDialog{
         days.add("Saturday");
         days.add("Sunday");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
-        final String USERNAME = "root";
-        final String PASSWORD = "Horia1975";
-        try {
-            Appointment appointment=null;
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM user_appointment_link";
-
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                appointment = new Appointment();
-
-                appointment.user_id = Integer.parseInt(resultSet.getString("user_id"));
-                String appointmentid=resultSet.getString("appointment_id");
-
-                String sqlAppointments = "SELECT * FROM appointments WHERE appointment_id = ";
-                sqlAppointments+=appointmentid;
-
-                PreparedStatement preparedStatementAppointments = conn.prepareStatement(sqlAppointments);
-
-                ResultSet resultSetAppointments = preparedStatementAppointments.executeQuery();
-
-                while(resultSetAppointments.next())
-                {
-                    appointment.start_day = resultSetAppointments.getString("start_day");
-                    appointment.start_date=resultSetAppointments.getString("start_date");
-                    appointment.start_hour = resultSetAppointments.getString("start_hour");
-                    appointment.finish_day = resultSetAppointments.getString("finish_day");
-                    appointment.finish_date=resultSetAppointments.getString("finish_date");
-                    appointment.finish_hour = resultSetAppointments.getString("finish_hour");
-                    appointments.add(appointment);
-                }
-            }
-            stmt.close();
-            conn.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        appointments=GetAppointments();
 
         SetWeekMatrix();
 
         SetTable();
         WeekTable.getTableHeader().setBackground(Color.BLUE);
-
-
-
-
-
-
 
         WeekTable.addMouseListener(new MouseAdapter() {
             @Override
@@ -168,7 +108,7 @@ public class MainPageForm extends JDialog{
         NextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(current_week<52){
+                if(current_week<number_of_weeks-1){
                     current_week++;
                     SetTable();
                     WeekTable.getTableHeader().setBackground(Color.BLUE);
@@ -185,11 +125,23 @@ public class MainPageForm extends JDialog{
         if(s.charAt(3)=='0')
         {
             hour=Integer.parseInt(s.substring(0,2));
-            row=(hour-8)*2;
+            if(hour<8) {
+                row=0;
+            } else if (hour>hours_worked+8) {
+                row=hours_worked*2-1;
+            } else {
+                row=(hour-8)*2;
+            }
         }
         else{
             hour=Integer.parseInt(s.substring(0,2));
-            row=(hour-8)*2+1;
+            if(hour<8) {
+                row=0;
+            } else if (hour>hours_worked+8) {
+                row=hours_worked*2-1;
+            } else {
+                row=(hour-8)*2+1;
+            }
         }
         return row;
     }
@@ -234,7 +186,51 @@ public class MainPageForm extends JDialog{
         }
         return column;
     }
+    private Vector<Appointment> GetAppointments(){
+        Vector<Appointment> Appointments=new Vector<Appointment>();
+        final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
+        final String USERNAME = "root";
+        final String PASSWORD = "Horia1975";
+        try {
+            Appointment appointment=null;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM user_appointment_link";
 
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                appointment = new Appointment();
+
+                appointment.user_id = Integer.parseInt(resultSet.getString("user_id"));
+                String appointment_id=resultSet.getString("appointment_id");
+
+                String sqlAppointments = "SELECT * FROM appointments WHERE appointment_id = ";
+                sqlAppointments+=appointment_id;
+
+                PreparedStatement preparedStatementAppointments = conn.prepareStatement(sqlAppointments);
+
+                ResultSet resultSetAppointments = preparedStatementAppointments.executeQuery();
+
+                while(resultSetAppointments.next())
+                {
+                    appointment.start_date=resultSetAppointments.getString("start_date");
+                    appointment.start_hour = resultSetAppointments.getString("start_hour");
+                    appointment.finish_date=resultSetAppointments.getString("finish_date");
+                    appointment.finish_hour = resultSetAppointments.getString("finish_hour");
+                    Appointments.add(appointment);
+                }
+            }
+            stmt.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return Appointments;
+    }
     private void SetWeekMatrix(){
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -244,33 +240,64 @@ public class MainPageForm extends JDialog{
         String day=dow.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         current_day=FindColumn(day);
         cal.add(Calendar.DAY_OF_MONTH, -current_day);
-        Vector<String> days_table;
 
-        String date;
-
-        for(int k=0;k<53;k++) {
+        for(int k=0;k<number_of_weeks;k++) {
 
             for (int i = 0; i < hours_worked * 2; i++) {
                 for (int j = 0; j < 7; j++) {
                     if((j==5&&i>hours_worked_on_Saturday*2-1)||(j==6&&i>hours_worked_on_Sunday*2-1)) {
-                        WeekMatrix[k][i][j] = "1";
+                        WeekMatrix[k][i][j] = '2';
                     }
                     else {
-                        WeekMatrix[k][i][j] = "0";
+                        WeekMatrix[k][i][j] = '0';
                     }
                 }
             }
-
             for(int j=0;j<7;j++) {
-                WeekMatrix[k][hours_worked*2][j]=days.get(j)+" "+formatter.format(cal.getTime()).substring(0,10);
+                Tables_head[k][j]=days.get(j)+" "+formatter.format(cal.getTime()).substring(0,10);
                 cal.add(Calendar.DAY_OF_MONTH,1);
             }
-
-
-
         }
 
         Calendar first_day=(Calendar) Calendar.getInstance();
+        first_day.add(first_day.DAY_OF_MONTH, -current_day);
+        first_day.set(first_day.HOUR_OF_DAY,8);
+        first_day.set(first_day.MINUTE,0);
+        first_day.set(first_day.SECOND,0);
+
+        Calendar now=(Calendar) Calendar.getInstance();
+        now.set(now.SECOND,0);
+
+        java.util.Date date2=first_day.getTime();
+        java.util.Date date3=now.getTime();
+
+        long difference_Time = date3.getTime() - date2.getTime();
+        long difference_Minutes = difference_Time / (1000 * 60);
+
+        while(difference_Minutes > 29)
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            int row = FindRow(sdf.format(date2).substring(11,16));
+            LocalDate localDate = LocalDate.of(Integer.parseInt(sdf.format(date2).substring(6,10)),Integer.parseInt(sdf.format(date2).substring(3,5)),Integer.parseInt(sdf.format(date2).substring(0,2)));
+            int column = FindColumn(localDate.getDayOfWeek().toString());
+
+            if(row>hours_worked*2-1||(row>hours_worked_on_Saturday*2-1&&column==5)||(row>hours_worked_on_Sunday*2-1&&column==6))
+            {
+                first_day.add(first_day.DAY_OF_MONTH, 1);
+                first_day.set(first_day.HOUR_OF_DAY, 7);
+                first_day.set(first_day.MINUTE, 30);
+            }else if(WeekMatrix[0][row][column]=='0')
+            {
+                WeekMatrix[0][row][column]='1';
+            }
+
+            first_day.add(first_day.MINUTE,30);
+            date2 = first_day.getTime();
+            date3 = now.getTime();
+            difference_Time = date3.getTime() - date2.getTime();
+            difference_Minutes = difference_Time / (1000 * 60);
+        }
+
         first_day.add(first_day.DAY_OF_MONTH, -current_day);
         first_day.set(first_day.HOUR_OF_DAY,0);
         first_day.set(first_day.MINUTE,0);
@@ -283,8 +310,6 @@ public class MainPageForm extends JDialog{
             start_date.set(start_date.YEAR,Integer.parseInt(appointments.get(i).start_date.substring(6,10)));
             start_date.set(start_date.HOUR_OF_DAY,Integer.parseInt(appointments.get(i).start_hour.substring(0,2)));
             start_date.set(start_date.MINUTE,Integer.parseInt(appointments.get(i).start_hour.substring(3,5)));
-            //start_date.set(start_date.HOUR_OF_DAY,0);
-            //start_date.set(start_date.MINUTE,0);
             start_date.set(start_date.SECOND,0);
 
             Calendar finish_date=(Calendar) Calendar.getInstance();
@@ -312,75 +337,30 @@ public class MainPageForm extends JDialog{
                 int row = FindRow(sdf.format(d1).substring(11,16));
                 LocalDate localDate = LocalDate.of(Integer.parseInt(sdf.format(d1).substring(6,10)),Integer.parseInt(sdf.format(d1).substring(3,5)),Integer.parseInt(sdf.format(d1).substring(0,2)));
                 int column = FindColumn(localDate.getDayOfWeek().toString());
-                if(WeekMatrix[week_number][row][column]=="0")
+
+                if(row>hours_worked*2-1||(row>hours_worked_on_Saturday*2-1&&column==5)||(row>hours_worked_on_Sunday*2-1&&column==6))
+                {
+                    start_date.add(start_date.DAY_OF_MONTH, 1);
+                    start_date.set(start_date.HOUR_OF_DAY, 7);
+                    start_date.set(start_date.MINUTE, 30);
+                }else if(WeekMatrix[week_number][row][column]=='0')
                 {
                     if (appointments.get(i).user_id == loggedUser.id)
                     {
-                        WeekMatrix[week_number][row][column] = "2";
+                        WeekMatrix[week_number][row][column] = '3';
                     } else
                     {
-                        WeekMatrix[week_number][row][column] = "1";
+                        WeekMatrix[week_number][row][column] = '2';
                     }
                 }
-
                 start_date.add(start_date.MINUTE,30);
                 d1=start_date.getTime();
                 difference_In_Time = d2.getTime() - d1.getTime();
                 difference_In_Minutes = difference_In_Time / (1000 * 60);
             }
-            /*int start_row = FindRow(appointments.get(i).start_hour);
-            int start_column = FindColumn(appointments.get(i).start_day);
-            String s = appointments.get(i).finish_hour;
-            String substring = "";
-            if (s.charAt(3) == '3') {
-                substring = s.substring(0, 3);
-                substring += "00";
-            } else {
-                int hour = Integer.parseInt(s.substring(0, 2));
-                hour -= 1;
-                if (hour < 10) {
-                    substring = "0" + Integer.toString(hour);
-                } else {
-                    substring = Integer.toString(hour);
-                }
-                substring += ":30";
-            }
-            int finish_row = FindRow(substring);
-            int finish_column = FindColumn(appointments.get(i).finish_day);
-            if (appointments.get(i).user_id == loggedUser.id) {
-                WeekMatrix[week_number][start_row][start_column] = "2";
-            } else {
-                WeekMatrix[week_number][start_row][start_column] = "1";
-            }
-            while (start_row != finish_row || start_column != finish_column) {
-                if (start_row == hours_worked * 2) {
-                    start_row = 0;
-                    if (start_column == 5) {
-                        start_column = 0;
-                    } else {
-                        start_column += 1;
-                    }
-                } else {
-                    start_row += 1;
-                }
-                if (appointments.get(i).user_id == loggedUser.id) {
-                    WeekMatrix[week_number][start_row][start_column] = "2";
-                } else {
-                    WeekMatrix[week_number][start_row][start_column] = "1";
-                }
-            }*/
         }
     }
-    private void FindFirsDay(){
-
-    }
     private void SetTable(){
-
-        /*WeekTable = new JTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };*/
 
         JTableHeader tableHead=WeekTable.getTableHeader();
         tableHead.setBackground(new Color(17, 17, 255,150));
@@ -395,19 +375,11 @@ public class MainPageForm extends JDialog{
         }
         tableHead.repaint();
 
-
-
-
-
-
-
         WeekTable.setFont(new Font("Bodoni MT Black", Font.BOLD, 20));
         WeekTable.setModel(new DefaultTableModel(
                 new Object[][]{},
-                new String[]{WeekMatrix[current_week][hours_worked*2][0], WeekMatrix[current_week][hours_worked*2][1],
-                        WeekMatrix[current_week][hours_worked*2][2], WeekMatrix[current_week][hours_worked*2][3],
-                        WeekMatrix[current_week][hours_worked*2][4], WeekMatrix[current_week][hours_worked*2][5],
-                        WeekMatrix[current_week][hours_worked*2][6]}
+                new String[]{Tables_head[current_week][0],Tables_head[current_week][1],Tables_head[current_week][2],
+                        Tables_head[current_week][3],Tables_head[current_week][4],Tables_head[current_week][5],Tables_head[current_week][6]}
         ));
 
         WeekTable.setTableHeader(tableHead);
@@ -416,10 +388,8 @@ public class MainPageForm extends JDialog{
 
 
 
-
-
-
         TableColorCellRenderer renderer=new TableColorCellRenderer();
+        renderer.setNumberOfWeeks(number_of_weeks);
         renderer.setAppointments(WeekMatrix);
         renderer.setHoursWorked(hours_worked);
         renderer.setHoursWorkedOnSaturday(hours_worked_on_Saturday);
@@ -440,9 +410,6 @@ public class MainPageForm extends JDialog{
         WeekTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         WeekTable.getTableHeader().setReorderingAllowed(false);
         WeekTable.getTableHeader().setResizingAllowed(false);
-
-
-
 
 
 
