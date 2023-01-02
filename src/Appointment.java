@@ -4,4 +4,5 @@ public class Appointment {
     String finish_date;
     String finish_hour;
     int user_id;
+    int total_cost;
 }

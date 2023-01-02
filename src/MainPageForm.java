@@ -28,7 +28,7 @@ public class MainPageForm extends JDialog{
     private User loggedUser=new User();
     private Calendar cal = Calendar.getInstance();
     private Vector<String> days=new Vector<String>(7);
-    final private int hours_worked=12;
+    final private int hours_worked=8;
     final private int hours_worked_on_Saturday=4;
     final private int hours_worked_on_Sunday=0;
     private int current_day;
@@ -104,7 +104,9 @@ public class MainPageForm extends JDialog{
                 Point point = e.getPoint();
                 int column = WeekTable.columnAtPoint(point);
                 int row = WeekTable.rowAtPoint(point);
-                SetAppointmentForm AppointmentForm=new SetAppointmentForm(null, current_week);
+                SetAppointmentForm AppointmentForm = new SetAppointmentForm(null, number_of_weeks, current_week, hours_worked, hours_worked_on_Saturday, hours_worked_on_Sunday, WeekMatrix, row, column, Tables_head, loggedUser);
+                SetTable();
+                WeekTable.getTableHeader().setBackground(Color.BLUE);
             }
         });
         PreviousButton.addActionListener(new ActionListener() {
