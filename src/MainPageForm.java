@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
@@ -13,7 +12,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.*;
-import java.util.Date;
 
 public class MainPageForm extends JDialog{
     private  JTable WeekTable;
@@ -274,7 +272,7 @@ public class MainPageForm extends JDialog{
         long difference_Time = date3.getTime() - date2.getTime();
         long difference_Minutes = difference_Time / (1000 * 60);
 
-        while(difference_Minutes > 29)
+        while(difference_Minutes > 0)
         {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             int row = FindRow(sdf.format(date2).substring(11,16));
