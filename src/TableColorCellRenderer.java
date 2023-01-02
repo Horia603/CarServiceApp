@@ -37,7 +37,7 @@ public class TableColorCellRenderer extends DefaultTableCellRenderer {
             c.setBackground(new Color(252, 46, 46));
             c.setBorder(new MatteBorder(0, 1, 1, 0, Color.black));
         } else if (WeekMatrix[current_week][row][column]=='1') {
-           c.setBackground(new Color(210, 210, 210, 255));
+           c.setBackground(new Color(192, 192, 192, 255));
            c.setBorder(new MatteBorder(0, 1, 1, 0, Color.black));
         } else if (isSelected) {
             c.setBackground(Color.GREEN);

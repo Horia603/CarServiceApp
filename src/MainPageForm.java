@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
@@ -18,10 +21,14 @@ public class MainPageForm extends JDialog{
     private JPanel MainPagePanel;
     private JButton NextButton;
     private JButton PreviousButton;
+    private JLabel WhiteLabel;
+    private JLabel GreyLabel;
+    private JLabel RedLabel;
+    private JLabel BlueLabel;
     private User loggedUser=new User();
     private Calendar cal = Calendar.getInstance();
     private Vector<String> days=new Vector<String>(7);
-    final private int hours_worked=8;
+    final private int hours_worked=12;
     final private int hours_worked_on_Saturday=4;
     final private int hours_worked_on_Sunday=0;
     private int current_day;
@@ -66,6 +73,13 @@ public class MainPageForm extends JDialog{
         PreviousButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         NextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+        Border margin = new EmptyBorder(2,2,2,2);
+        WhiteLabel.setBorder(new CompoundBorder(border, margin));
+        GreyLabel.setBorder(new CompoundBorder(border, margin));
+        RedLabel.setBorder(new CompoundBorder(border, margin));
+        BlueLabel.setBorder(new CompoundBorder(border, margin));
+
         loggedUser=user;
 
         days.add("Monday");
@@ -90,7 +104,7 @@ public class MainPageForm extends JDialog{
                 Point point = e.getPoint();
                 int column = WeekTable.columnAtPoint(point);
                 int row = WeekTable.rowAtPoint(point);
-
+                SetAppointmentForm AppointmentForm=new SetAppointmentForm(null, current_week);
             }
         });
         PreviousButton.addActionListener(new ActionListener() {
@@ -244,7 +258,7 @@ public class MainPageForm extends JDialog{
             for (int i = 0; i < hours_worked * 2; i++) {
                 for (int j = 0; j < 7; j++) {
                     if((j==5&&i>hours_worked_on_Saturday*2-1)||(j==6&&i>hours_worked_on_Sunday*2-1)) {
-                        WeekMatrix[k][i][j] = '2';
+                        WeekMatrix[k][i][j] = '1';
                     }
                     else {
                         WeekMatrix[k][i][j] = '0';
