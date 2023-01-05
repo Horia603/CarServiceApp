@@ -104,9 +104,12 @@ public class MainPageForm extends JDialog{
                 Point point = e.getPoint();
                 int column = WeekTable.columnAtPoint(point);
                 int row = WeekTable.rowAtPoint(point);
-                SetAppointmentForm AppointmentForm = new SetAppointmentForm(null, number_of_weeks, current_week, hours_worked, hours_worked_on_Saturday, hours_worked_on_Sunday, WeekMatrix, row, column, Tables_head, loggedUser);
-                SetTable();
-                WeekTable.getTableHeader().setBackground(Color.BLUE);
+                if(WeekMatrix[current_week][row][column]=='0')
+                {
+                    SetAppointmentForm AppointmentForm = new SetAppointmentForm(null, number_of_weeks, current_week, hours_worked, hours_worked_on_Saturday, hours_worked_on_Sunday, WeekMatrix, row, column, Tables_head, loggedUser);
+                    SetTable();
+                    WeekTable.getTableHeader().setBackground(Color.BLUE);
+                }
             }
         });
         PreviousButton.addActionListener(new ActionListener() {
@@ -220,10 +223,10 @@ public class MainPageForm extends JDialog{
                 appointment = new Appointment();
 
                 appointment.user_id = Integer.parseInt(resultSet.getString("user_id"));
-                String appointment_id=resultSet.getString("appointment_id");
+                appointment.appointment_id=resultSet.getInt("appointment_id");
 
                 String sqlAppointments = "SELECT * FROM appointments WHERE appointment_id = ";
-                sqlAppointments+=appointment_id;
+                sqlAppointments+=Integer.toString(appointment.appointment_id);
 
                 PreparedStatement preparedStatementAppointments = conn.prepareStatement(sqlAppointments);
 
@@ -244,6 +247,33 @@ public class MainPageForm extends JDialog{
             e.printStackTrace();
         }
         return Appointments;
+    }
+    private void DeleteAppointment(Appointment appointment){
+        final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
+        final String USERNAME = "root";
+        final String PASSWORD = "Horia1975";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+
+            String sql = "DELETE FROM user_appointment_link WHERE appointment_id="+Integer.toString(appointment.appointment_id);
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            int deleted_rows = preparedStatement.executeUpdate();
+
+            sql = "DELETE FROM appointment_issue_link WHERE appointment_id="+Integer.toString(appointment.appointment_id);
+            preparedStatement = conn.prepareStatement(sql);
+            deleted_rows = preparedStatement.executeUpdate();
+
+            sql = "DELETE FROM appointments WHERE appointment_id="+Integer.toString(appointment.appointment_id);
+            preparedStatement = conn.prepareStatement(sql);
+            deleted_rows = preparedStatement.executeUpdate();
+
+            stmt.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     private void SetWeekMatrix(){
 
@@ -317,6 +347,9 @@ public class MainPageForm extends JDialog{
         first_day.set(first_day.MINUTE,0);
         first_day.set(first_day.SECOND,0);
 
+        Calendar calendar = (Calendar) Calendar.getInstance();
+        java.util.Date current_day = calendar.getTime();
+
         for (int i = 0; i < appointments.size(); i++) {
             Calendar start_date=(Calendar) Calendar.getInstance();
             start_date.set(start_date.DAY_OF_MONTH,Integer.parseInt(appointments.get(i).start_date.substring(0,2)));
@@ -338,39 +371,46 @@ public class MainPageForm extends JDialog{
             java.util.Date d1=start_date.getTime();
             java.util.Date d2=finish_date.getTime();
 
-            long difference_In_Time = d2.getTime() - d1.getTime();
-            long difference_In_Minutes = difference_In_Time / (1000 * 60);
-
-            while(difference_In_Minutes>0)
+            if(d2.getTime() - current_day.getTime() < 0)
             {
-                long difference_In_Time_for_week_number = d1.getTime() - d0.getTime();
-                long difference_In_Days_for_week_number = (difference_In_Time_for_week_number / (1000 * 60 * 60 * 24)) % 365;
-                int week_number= (int) (difference_In_Days_for_week_number/7);
+                DeleteAppointment(appointments.get(i));
+                appointments.remove(i);
+            }
+            else{
+                long difference_In_Time = d2.getTime() - d1.getTime();
+                long difference_In_Minutes = difference_In_Time / (1000 * 60);
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                int row = FindRow(sdf.format(d1).substring(11,16));
-                LocalDate localDate = LocalDate.of(Integer.parseInt(sdf.format(d1).substring(6,10)),Integer.parseInt(sdf.format(d1).substring(3,5)),Integer.parseInt(sdf.format(d1).substring(0,2)));
-                int column = FindColumn(localDate.getDayOfWeek().toString());
+                while(difference_In_Minutes>0)
+                {
+                    long difference_In_Time_for_week_number = d1.getTime() - d0.getTime();
+                    long difference_In_Days_for_week_number = (difference_In_Time_for_week_number / (1000 * 60 * 60 * 24)) % 365;
+                    int week_number= (int) (difference_In_Days_for_week_number/7);
 
-                if(row>hours_worked*2-1||(row>hours_worked_on_Saturday*2-1&&column==5)||(row>hours_worked_on_Sunday*2-1&&column==6))
-                {
-                    start_date.add(start_date.DAY_OF_MONTH, 1);
-                    start_date.set(start_date.HOUR_OF_DAY, 7);
-                    start_date.set(start_date.MINUTE, 30);
-                }else if(WeekMatrix[week_number][row][column]=='0')
-                {
-                    if (appointments.get(i).user_id == loggedUser.id)
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                    int row = FindRow(sdf.format(d1).substring(11,16));
+                    LocalDate localDate = LocalDate.of(Integer.parseInt(sdf.format(d1).substring(6,10)),Integer.parseInt(sdf.format(d1).substring(3,5)),Integer.parseInt(sdf.format(d1).substring(0,2)));
+                    int column = FindColumn(localDate.getDayOfWeek().toString());
+
+                    if(row>hours_worked*2-1||(row>hours_worked_on_Saturday*2-1&&column==5)||(row>hours_worked_on_Sunday*2-1&&column==6))
                     {
-                        WeekMatrix[week_number][row][column] = '3';
-                    } else
+                        start_date.add(start_date.DAY_OF_MONTH, 1);
+                        start_date.set(start_date.HOUR_OF_DAY, 7);
+                        start_date.set(start_date.MINUTE, 30);
+                    }else if(WeekMatrix[week_number][row][column]=='0')
                     {
-                        WeekMatrix[week_number][row][column] = '2';
+                        if (appointments.get(i).user_id == loggedUser.id)
+                        {
+                            WeekMatrix[week_number][row][column] = '3';
+                        } else
+                        {
+                            WeekMatrix[week_number][row][column] = '2';
+                        }
                     }
+                    start_date.add(start_date.MINUTE,30);
+                    d1=start_date.getTime();
+                    difference_In_Time = d2.getTime() - d1.getTime();
+                    difference_In_Minutes = difference_In_Time / (1000 * 60);
                 }
-                start_date.add(start_date.MINUTE,30);
-                d1=start_date.getTime();
-                difference_In_Time = d2.getTime() - d1.getTime();
-                difference_In_Minutes = difference_In_Time / (1000 * 60);
             }
         }
     }

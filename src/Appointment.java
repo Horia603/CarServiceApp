@@ -1,4 +1,5 @@
 public class Appointment {
+    int appointment_id;
     String start_date;
     String start_hour;
     String finish_date;
