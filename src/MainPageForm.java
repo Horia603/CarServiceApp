@@ -213,7 +213,7 @@ public class MainPageForm extends JDialog{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM user_appointment_link";
+            String sql = "SELECT * FROM appointments";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
@@ -222,24 +222,13 @@ public class MainPageForm extends JDialog{
             while (resultSet.next()) {
                 appointment = new Appointment();
 
-                appointment.user_id = Integer.parseInt(resultSet.getString("user_id"));
                 appointment.appointment_id=resultSet.getInt("appointment_id");
-
-                String sqlAppointments = "SELECT * FROM appointments WHERE appointment_id = ";
-                sqlAppointments+=Integer.toString(appointment.appointment_id);
-
-                PreparedStatement preparedStatementAppointments = conn.prepareStatement(sqlAppointments);
-
-                ResultSet resultSetAppointments = preparedStatementAppointments.executeQuery();
-
-                while(resultSetAppointments.next())
-                {
-                    appointment.start_date=resultSetAppointments.getString("start_date");
-                    appointment.start_hour = resultSetAppointments.getString("start_hour");
-                    appointment.finish_date=resultSetAppointments.getString("finish_date");
-                    appointment.finish_hour = resultSetAppointments.getString("finish_hour");
-                    Appointments.add(appointment);
-                }
+                appointment.start_date=resultSet.getString("start_date");
+                appointment.start_hour = resultSet.getString("start_hour");
+                appointment.finish_date=resultSet.getString("finish_date");
+                appointment.finish_hour = resultSet.getString("finish_hour");
+                appointment.user_id = Integer.parseInt(resultSet.getString("user_id"));
+                Appointments.add(appointment);
             }
             stmt.close();
             conn.close();
@@ -257,13 +246,9 @@ public class MainPageForm extends JDialog{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
 
-            String sql = "DELETE FROM user_appointment_link WHERE appointment_id="+Integer.toString(appointment.appointment_id);
+            String sql = "DELETE FROM appointment_issue_link WHERE appointment_id="+Integer.toString(appointment.appointment_id);
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             int deleted_rows = preparedStatement.executeUpdate();
-
-            sql = "DELETE FROM appointment_issue_link WHERE appointment_id="+Integer.toString(appointment.appointment_id);
-            preparedStatement = conn.prepareStatement(sql);
-            deleted_rows = preparedStatement.executeUpdate();
 
             sql = "DELETE FROM appointments WHERE appointment_id="+Integer.toString(appointment.appointment_id);
             preparedStatement = conn.prepareStatement(sql);

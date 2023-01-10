@@ -100,8 +100,8 @@ public class SetAppointmentForm extends JDialog{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO appointments (start_date,start_hour,finish_date,finish_hour) " +
-                    "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO appointments (start_date,start_hour,finish_date,finish_hour,user_id) " +
+                    "VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
@@ -109,6 +109,7 @@ public class SetAppointmentForm extends JDialog{
             preparedStatement.setString(2, appointment.start_hour);
             preparedStatement.setString(3, appointment.finish_date);
             preparedStatement.setString(4, appointment.finish_hour);
+            preparedStatement.setInt(5, logged_user.id);
 
             //Insert row into the table
             int addedRows = preparedStatement.executeUpdate();
@@ -122,13 +123,6 @@ public class SetAppointmentForm extends JDialog{
                     appointment_id=Integer.parseInt(resultSet.getString("appointment_id"));
                 }
             }
-
-            sql = "INSERT INTO user_appointment_link (user_id,appointment_id) " +
-                    "VALUES (?, ?)";
-            preparedStatement=conn.prepareStatement(sql);
-            preparedStatement.setInt(1, logged_user.id);
-            preparedStatement.setInt(2, appointment_id);
-            addedRows = preparedStatement.executeUpdate();
 
             sql = "INSERT INTO appointment_issue_link (appointment_id, issue_id) " +
                     "VALUES (?, ?)";

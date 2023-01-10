@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Appointment window functionality added">
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Old appointments auto deletion added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainPageForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainPageForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPageForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetAppointmentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetAppointmentForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672703249967</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Old appointments auto deletion added">
+      <created>1672880203491</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1672880203491</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,7 +271,8 @@
     <MESSAGE value="Appointments table bugfix" />
     <MESSAGE value="Appointment window created" />
     <MESSAGE value="Appointment window functionality added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Appointment window functionality added" />
+    <MESSAGE value="Old appointments auto deletion added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Old appointments auto deletion added" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CarServiceDataBase$Main.ic" NAME="Main Coverage Results" MODIFIED="1672605719036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
