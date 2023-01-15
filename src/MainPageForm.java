@@ -25,6 +25,10 @@ public class MainPageForm extends JDialog{
     private JLabel GreyLabel;
     private JLabel RedLabel;
     private JLabel BlueLabel;
+    private JButton SeeAppointmentsButton;
+    final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
+    final String USERNAME = "root";
+    final String PASSWORD = "Horia1975";
     private User loggedUser=new User();
     private Calendar cal = Calendar.getInstance();
     private Vector<String> days=new Vector<String>(7);
@@ -72,6 +76,11 @@ public class MainPageForm extends JDialog{
         NextButton.setContentAreaFilled(false);
         PreviousButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         NextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        PreviousButton.setBorder(null);
+        NextButton.setBorder(null);
+        SeeAppointmentsButton.setContentAreaFilled(false);
+        SeeAppointmentsButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        SeeAppointmentsButton.setBorder(null);
 
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
         Border margin = new EmptyBorder(2,2,2,2);
@@ -132,7 +141,13 @@ public class MainPageForm extends JDialog{
                 }
             }
         });
-
+        SeeAppointmentsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                AppointmentsForm appointmentsForm=new AppointmentsForm(null,loggedUser);
+            }
+        });
         setVisible(true);
     }
 
@@ -205,9 +220,6 @@ public class MainPageForm extends JDialog{
     }
     private Vector<Appointment> GetAppointments(){
         Vector<Appointment> Appointments=new Vector<Appointment>();
-        final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
-        final String USERNAME = "root";
-        final String PASSWORD = "Horia1975";
         try {
             Appointment appointment=null;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -238,9 +250,6 @@ public class MainPageForm extends JDialog{
         return Appointments;
     }
     private void DeleteAppointment(Appointment appointment){
-        final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
-        final String USERNAME = "root";
-        final String PASSWORD = "Horia1975";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -327,8 +336,9 @@ public class MainPageForm extends JDialog{
             difference_Minutes = difference_Time / (1000 * 60);
         }
 
+        first_day=(Calendar) Calendar.getInstance();
         first_day.add(first_day.DAY_OF_MONTH, -current_day);
-        first_day.set(first_day.HOUR_OF_DAY,0);
+        first_day.set(first_day.HOUR_OF_DAY,8);
         first_day.set(first_day.MINUTE,0);
         first_day.set(first_day.SECOND,0);
 
