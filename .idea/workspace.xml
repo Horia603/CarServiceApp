@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Finished Project">
+    <list default="true" id="56393a1d-3fbe-4a0a-af08-7ec541480234" name="Changes" comment="Bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SetAppointmentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetAppointmentForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppointmentsForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppointmentsForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673919553261</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Bug fix">
+      <created>1673920461941</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1673920461941</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -302,7 +309,8 @@
     <MESSAGE value="User_appointment_link table eliminated" />
     <MESSAGE value="Appointments Window added" />
     <MESSAGE value="Finished Project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Project" />
+    <MESSAGE value="Bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

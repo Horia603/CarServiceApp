@@ -67,8 +67,6 @@ public class AppointmentsForm extends JDialog{
                     Point point = e.getPoint();
                     int row = AppointmentsTable.rowAtPoint(point);
                     DeleteAppointment(appointments.get(row));
-                    //dispose();
-                    //AppointmentsForm Appointments = new AppointmentsForm(null ,logged_user);
                     SetTable();
                     AppointmentsTable.getTableHeader().setBackground(Color.BLUE);
 

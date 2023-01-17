@@ -164,7 +164,7 @@
           <font name="Bodoni MT Black" size="48" style="1"/>
           <foreground color="-1310712"/>
           <horizontalAlignment value="0"/>
-          <text value="Chose issues:"/>
+          <text value="Choose issues:"/>
         </properties>
       </component>
     </children>

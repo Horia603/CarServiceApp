@@ -95,7 +95,7 @@
         <properties>
           <font name="Bodoni MT Black" size="48" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Chose a date for the appointment"/>
+          <text value="Choose a date for the appointment"/>
         </properties>
       </component>
       <hspacer id="e2a8c">
