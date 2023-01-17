@@ -78,12 +78,15 @@ public class SetAppointmentForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 int total_cost = AddAppointmentToDataBase();
-                JOptionPane.showMessageDialog(SetAppointmentForm.this,
-                        "Appointment set!\n" +
-                                "Total cost is $" + Integer.toString(total_cost),
-                        "",
-                        JOptionPane.INFORMATION_MESSAGE);
-                dispose();
+                if(total_cost>-1)
+                {
+                    JOptionPane.showMessageDialog(SetAppointmentForm.this,
+                            "Appointment set!\n" +
+                                    "Total cost is $" + Integer.toString(total_cost),
+                            "",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                }
             }
         });
 
@@ -93,58 +96,69 @@ public class SetAppointmentForm extends JDialog{
         ConnectionUrlParser.Pair<Appointment,Vector<Integer>> pair= MakeAppointment();
         Appointment appointment = pair.left;
         Vector<Integer> issues = pair.right;
+        if(issues.size()>0)
+        {
+            final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
+            final String USERNAME = "root";
+            final String PASSWORD = "Horia1975";
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
-        final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
-        final String USERNAME = "root";
-        final String PASSWORD = "Horia1975";
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+                Statement stmt = conn.createStatement();
+                String sql = "INSERT INTO appointments (start_date,start_hour,finish_date,finish_hour,user_id) " +
+                        "VALUES (?, ?, ?, ?, ?)";
 
-            Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO appointments (start_date,start_hour,finish_date,finish_hour,user_id) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, appointment.start_date);
+                preparedStatement.setString(2, appointment.start_hour);
+                preparedStatement.setString(3, appointment.finish_date);
+                preparedStatement.setString(4, appointment.finish_hour);
+                preparedStatement.setInt(5, logged_user.id);
 
-            preparedStatement.setString(1, appointment.start_date);
-            preparedStatement.setString(2, appointment.start_hour);
-            preparedStatement.setString(3, appointment.finish_date);
-            preparedStatement.setString(4, appointment.finish_hour);
-            preparedStatement.setInt(5, logged_user.id);
+                //Insert row into the table
+                int addedRows = preparedStatement.executeUpdate();
 
-            //Insert row into the table
-            int addedRows = preparedStatement.executeUpdate();
-
-            sql = "SELECT * FROM appointments";
-            preparedStatement=conn.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            int appointment_id=0;
-            while(resultSet.next()) {
-                if(resultSet.isLast()) {
-                    appointment_id=Integer.parseInt(resultSet.getString("appointment_id"));
+                sql = "SELECT * FROM appointments";
+                preparedStatement=conn.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                int appointment_id=0;
+                while(resultSet.next()) {
+                    if(resultSet.isLast()) {
+                        appointment_id=Integer.parseInt(resultSet.getString("appointment_id"));
+                    }
                 }
+
+                sql = "INSERT INTO appointment_issue_link (appointment_id, issue_id) " +
+                        "VALUES (?, ?)";
+                preparedStatement=conn.prepareStatement(sql);
+                for(int i=0;i<issues.size();i++)
+                {
+                    preparedStatement.setInt(1, appointment_id);
+                    preparedStatement.setInt(2, issues.get(i));
+                    addedRows = preparedStatement.executeUpdate();
+                }
+
+                stmt.close();
+                conn.close();
+
+            }catch(Exception e){
+                e.printStackTrace();
             }
-
-            sql = "INSERT INTO appointment_issue_link (appointment_id, issue_id) " +
-                    "VALUES (?, ?)";
-            preparedStatement=conn.prepareStatement(sql);
-            for(int i=0;i<issues.size();i++)
-            {
-                preparedStatement.setInt(1, appointment_id);
-                preparedStatement.setInt(2, issues.get(i));
-                addedRows = preparedStatement.executeUpdate();
-            }
-
-            stmt.close();
-            conn.close();
-
-        }catch(Exception e){
-            e.printStackTrace();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(SetAppointmentForm.this,
+                    "Select an issue first",
+                    "Select issue",
+                    JOptionPane.ERROR_MESSAGE);
+            return -1;
         }
         return appointment.total_cost;
     }
     ConnectionUrlParser.Pair<Appointment,Vector<Integer>> MakeAppointment(){
+        boolean ok=false;
         int cost=0;
         int duration=0;
         Issue issue=null;
@@ -155,6 +169,7 @@ public class SetAppointmentForm extends JDialog{
             cost+=issue.cost;
             duration+=issue.duration;
             issues.add(2);
+            ok=true;
         }
         if(BatteryChangeCheckBox.isSelected()){
             issue=new Issue();
@@ -162,6 +177,7 @@ public class SetAppointmentForm extends JDialog{
             cost+=issue.cost;
             duration+=issue.duration;
             issues.add(7);
+            ok=true;
         }
         if(HeadLightChangeCheckBox.isSelected()){
             issue=new Issue();
@@ -169,6 +185,7 @@ public class SetAppointmentForm extends JDialog{
             cost+=issue.cost;
             duration+=issue.duration;
             issues.add(3);
+            ok=true;
         }
         if(TailLightChangeCheckBox.isSelected()){
             issue=new Issue();
@@ -176,6 +193,7 @@ public class SetAppointmentForm extends JDialog{
             cost+=issue.cost;
             duration+=issue.duration;
             issues.add(4);
+            ok=true;
         }
         if(ExhaustRepairCheckBox.isSelected()){
             issue=new Issue();
@@ -183,6 +201,7 @@ public class SetAppointmentForm extends JDialog{
             cost+=issue.cost;
             duration+=issue.duration;
             issues.add(5);
+            ok=true;
         }
         if(SuspensionRepairCheckBox.isSelected()){
             issue=new Issue();
@@ -190,6 +209,7 @@ public class SetAppointmentForm extends JDialog{
             cost+=issue.cost;
             duration+=issue.duration;
             issues.add(6);
+            ok=true;
         }
         if(MaintenanceCheckBox.isSelected()){
             issue=new Issue();
@@ -197,6 +217,7 @@ public class SetAppointmentForm extends JDialog{
             cost+=issue.cost;
             duration+=issue.duration;
             issues.add(8);
+            ok=true;
         }
         if(OtherProblemCheckBox.isSelected()){
             issue=new Issue();
@@ -204,44 +225,48 @@ public class SetAppointmentForm extends JDialog{
             //cost+=issue.cost;
             duration+=issue.duration;
             issues.add(1);
+            ok=true;
         }
         Appointment appointment = new Appointment();
-        appointment.total_cost=cost;
-        appointment.start_date=Tables_head[current_week][selected_column].substring(Tables_head[current_week][selected_column].length()-10);
-        appointment.start_hour=GetHour(selected_row).substring(0,5);
+        if(ok)
+        {
+            appointment.total_cost=cost;
+            appointment.start_date=Tables_head[current_week][selected_column].substring(Tables_head[current_week][selected_column].length()-10);
+            appointment.start_hour=GetHour(selected_row).substring(0,5);
 
-        Calendar calendar=(Calendar) Calendar.getInstance();
-        calendar.set(calendar.DAY_OF_MONTH, Integer.parseInt(appointment.start_date.substring(0,2)));
-        calendar.set(calendar.MONTH,Integer.parseInt(appointment.start_date.substring(3,5))-1);
-        calendar.set(calendar.YEAR,Integer.parseInt(appointment.start_date.substring(6,10)));
-        calendar.set(calendar.SECOND,0);
-        calendar.set(calendar.HOUR_OF_DAY,Integer.parseInt(appointment.start_hour.substring(0,2)));
-        calendar.set(calendar.MINUTE,Integer.parseInt((appointment.start_hour.substring(3,5))));
+            Calendar calendar=(Calendar) Calendar.getInstance();
+            calendar.set(calendar.DAY_OF_MONTH, Integer.parseInt(appointment.start_date.substring(0,2)));
+            calendar.set(calendar.MONTH,Integer.parseInt(appointment.start_date.substring(3,5))-1);
+            calendar.set(calendar.YEAR,Integer.parseInt(appointment.start_date.substring(6,10)));
+            calendar.set(calendar.SECOND,0);
+            calendar.set(calendar.HOUR_OF_DAY,Integer.parseInt(appointment.start_hour.substring(0,2)));
+            calendar.set(calendar.MINUTE,Integer.parseInt((appointment.start_hour.substring(3,5))));
 
-        java.util.Date date=calendar.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            java.util.Date date=calendar.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-        while(duration>0){
-            int row = FindRow(sdf.format(date).substring(11,16));
-            LocalDate localDate = LocalDate.of(Integer.parseInt(sdf.format(date).substring(6,10)),Integer.parseInt(sdf.format(date).substring(3,5)),Integer.parseInt(sdf.format(date).substring(0,2)));
-            int column = FindColumn(localDate.getDayOfWeek().toString());
+            while(duration>0){
+                int row = FindRow(sdf.format(date).substring(11,16));
+                LocalDate localDate = LocalDate.of(Integer.parseInt(sdf.format(date).substring(6,10)),Integer.parseInt(sdf.format(date).substring(3,5)),Integer.parseInt(sdf.format(date).substring(0,2)));
+                int column = FindColumn(localDate.getDayOfWeek().toString());
 
-            if(row>hours_worked*2-1||(row>hours_worked_on_Saturday*2-1&&column==5)||(row>hours_worked_on_Sunday*2-1&&column==6))
-            {
-                calendar.add(calendar.DAY_OF_MONTH, 1);
-                calendar.set(calendar.HOUR_OF_DAY, 7);
-                calendar.set(calendar.MINUTE, 30);
-                if(column==6)
-                    current_week+=1;
-            }else if(WeekMatrix[current_week][row][column]=='0'){
-                WeekMatrix[current_week][row][column]='3';
-                duration-=30;
+                if(row>hours_worked*2-1||(row>hours_worked_on_Saturday*2-1&&column==5)||(row>hours_worked_on_Sunday*2-1&&column==6))
+                {
+                    calendar.add(calendar.DAY_OF_MONTH, 1);
+                    calendar.set(calendar.HOUR_OF_DAY, 7);
+                    calendar.set(calendar.MINUTE, 30);
+                    if(column==6)
+                        current_week+=1;
+                }else if(WeekMatrix[current_week][row][column]=='0'){
+                    WeekMatrix[current_week][row][column]='3';
+                    duration-=30;
+                }
+                calendar.add(calendar.MINUTE,30);
+                date=calendar.getTime();
             }
-            calendar.add(calendar.MINUTE,30);
-            date=calendar.getTime();
+            appointment.finish_date=sdf.format(date).substring(0,10);
+            appointment.finish_hour=sdf.format(date).substring(11,16);
         }
-        appointment.finish_date=sdf.format(date).substring(0,10);
-        appointment.finish_hour=sdf.format(date).substring(11,16);
 
         return new ConnectionUrlParser.Pair<>(appointment,issues);
     }
