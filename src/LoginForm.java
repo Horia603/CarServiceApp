@@ -81,7 +81,7 @@ public class LoginForm extends JDialog {
                 user.password = resultSet.getString("password");
                 user.name = resultSet.getString("name");
                 user.surname = resultSet.getString("surname");
-                user.age = resultSet.getString("age");
+                user.birthday = resultSet.getString("birthday");
                 user.phone_number = resultSet.getString("phone_number");
             }
             stmt.close();

@@ -43,7 +43,7 @@ public class SetAppointmentForm extends JDialog{
         ImageIcon icon = new ImageIcon("./src/car.png");
         setIconImages(Collections.singletonList(icon.getImage()));
 
-        setSize(new Dimension(650,700));
+        setSize(new Dimension(750,750));
         setResizable(false);
 
         setModal(true);
@@ -59,6 +59,8 @@ public class SetAppointmentForm extends JDialog{
         SuspensionRepairCheckBox.setCursor(new Cursor(Cursor.HAND_CURSOR));
         MaintenanceCheckBox.setCursor(new Cursor(Cursor.HAND_CURSOR));
         OtherProblemCheckBox.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        SetPrices();
 
         number_of_weeks=weeks;
         current_week=week;
@@ -199,7 +201,7 @@ public class SetAppointmentForm extends JDialog{
         if(OtherProblemCheckBox.isSelected()){
             issue=new Issue();
             issue=GetIssue(1);
-            cost+=issue.cost;
+            //cost+=issue.cost;
             duration+=issue.duration;
             issues.add(1);
         }
@@ -362,5 +364,76 @@ public class SetAppointmentForm extends JDialog{
             e.printStackTrace();
         }
         return issue;
+    }
+    private void SetPrices(){
+        String price_number=Integer.toString(GetIssue(2).cost);
+        int spaces=4-price_number.length();
+        String price="";
+        for(int i=0;i<spaces;i++)
+        {
+            price+=" ";
+        }
+        price=price+price_number+"$";
+        OilChangeCheckBox.setText(OilChangeCheckBox.getText() + price);
+
+        price_number=Integer.toString(GetIssue(7).cost);
+        spaces=4-price_number.length();
+        price="";
+        for(int i=0;i<spaces;i++)
+        {
+            price+=" ";
+        }
+        price=price+price_number+"$";
+        BatteryChangeCheckBox.setText(BatteryChangeCheckBox.getText() + price);
+
+        price_number=Integer.toString(GetIssue(3).cost);
+        spaces=4-price_number.length();
+        price="";
+        for(int i=0;i<spaces;i++)
+        {
+            price+=" ";
+        }
+        price=price+price_number+"$";
+        HeadLightChangeCheckBox.setText(HeadLightChangeCheckBox.getText() + price);
+
+        price_number=Integer.toString(GetIssue(4).cost);
+        spaces=4-price_number.length();
+        price="";
+        for(int i=0;i<spaces;i++)
+        {
+            price+=" ";
+        }
+        price=price+price_number+"$";
+        TailLightChangeCheckBox.setText(TailLightChangeCheckBox.getText() + price);
+
+        price_number=Integer.toString(GetIssue(5).cost);
+        spaces=4-price_number.length();
+        price="";
+        for(int i=0;i<spaces;i++)
+        {
+            price+=" ";
+        }
+        price=price+price_number+"$";
+        ExhaustRepairCheckBox.setText(ExhaustRepairCheckBox.getText() + price);
+
+        price_number=Integer.toString(GetIssue(6).cost);
+        spaces=4-price_number.length();
+        price="";
+        for(int i=0;i<spaces;i++)
+        {
+            price+=" ";
+        }
+        price=price+price_number+"$";
+        SuspensionRepairCheckBox.setText(SuspensionRepairCheckBox.getText() + price);
+
+        price_number=Integer.toString(GetIssue(8).cost);
+        spaces=4-price_number.length();
+        price="";
+        for(int i=0;i<spaces;i++)
+        {
+            price+=" ";
+        }
+        price=price+price_number+"$";
+        MaintenanceCheckBox.setText(MaintenanceCheckBox.getText() + price);
     }
 }

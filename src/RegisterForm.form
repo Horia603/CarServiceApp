@@ -96,7 +96,7 @@
         <properties>
           <font name="Bodoni MT Black" size="24" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Enter your age"/>
+          <text value="Enter your birthday"/>
         </properties>
       </component>
       <vspacer id="68231">

@@ -6,6 +6,8 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,6 +18,8 @@ public class AppointmentsForm extends JDialog{
     private JPanel AppointmentsPanel;
     private JScrollPane TablePane;
     private JButton SetAppointmentButton;
+    private JLabel YourAppointmentsLabel;
+    private JLabel NoAppointmentsLabel;
     private User logged_user = new User();
     private Vector<Appointment> appointments;
     final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sys";
@@ -53,6 +57,25 @@ public class AppointmentsForm extends JDialog{
                 MainPageForm homePageForm=new MainPageForm(null, logged_user);
             }
         });
+        AppointmentsTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this appointment?", "Delete Appointment", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    Point point = e.getPoint();
+                    int row = AppointmentsTable.rowAtPoint(point);
+                    DeleteAppointment(appointments.get(row));
+                    //dispose();
+                    //AppointmentsForm Appointments = new AppointmentsForm(null ,logged_user);
+                    SetTable();
+                    AppointmentsTable.getTableHeader().setBackground(Color.BLUE);
+
+                } else if (result == JOptionPane.NO_OPTION) {
+                }
+            }
+        });
         setVisible(true);
     }
     void SetTable(){
@@ -78,18 +101,29 @@ public class AppointmentsForm extends JDialog{
         AppointmentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         AppointmentsTable.getTableHeader().setReorderingAllowed(false);
         AppointmentsTable.getTableHeader().setResizingAllowed(false);
-        AppointmentsTable.setSelectionBackground(Color.GREEN);
+        AppointmentsTable.setSelectionBackground(new Color(217, 0, 0));
         AppointmentsTable.setBorder(new MatteBorder(0, 1, 1, 0, Color.black));
 
         appointments=GetAppointments();
+        if(appointments.size()==0)
+        {
+            TablePane.setVisible(false);
+            AppointmentsTable.setVisible(false);
+            YourAppointmentsLabel.setVisible(false);
+            NoAppointmentsLabel.setVisible(true);
+        }
+        else {
+            NoAppointmentsLabel.setVisible(false);
+            TablePane.setVisible(true);
+            AppointmentsTable.setVisible(true);
+            YourAppointmentsLabel.setVisible(true);
+        }
 
         for(int i=0;i<appointments.size();i++)
         {
-            String appointment[]={appointments.get(i).start_date,appointments.get(i).start_hour,appointments.get(i).finish_date,appointments.get(i).start_hour};
+            String appointment[]={appointments.get(i).start_date,appointments.get(i).start_hour,appointments.get(i).finish_date,appointments.get(i).finish_hour};
             dtm.addRow(appointment);
         }
-        //AppointmentsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        //TablePane.setSize(new Dimension(500, 100));
         AppointmentsTable.setRowHeight(37);
         int rows = AppointmentsTable.getRowCount();
         int cols = AppointmentsTable.getColumnCount();
@@ -104,6 +138,8 @@ public class AppointmentsForm extends JDialog{
             TablePane.setPreferredSize(new Dimension(totalWidth, rowHeight * (rows + 1) + 3));
         else
             TablePane.setPreferredSize(new Dimension(totalWidth, rowHeight * (number_of_appointments_in_table + 1) + 3));
+        AppointmentsPanel.revalidate();
+        AppointmentsPanel.repaint();
     }
     private Vector<Appointment> GetAppointments(){
         Vector<Appointment> Appointments=new Vector<Appointment>();
@@ -150,5 +186,25 @@ public class AppointmentsForm extends JDialog{
             }
         });
         return Appointments;
+    }
+    private void DeleteAppointment(Appointment appointment){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+
+            String sql = "DELETE FROM appointment_issue_link WHERE appointment_id="+Integer.toString(appointment.appointment_id);
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            int deleted_rows = preparedStatement.executeUpdate();
+
+            sql = "DELETE FROM appointments WHERE appointment_id="+Integer.toString(appointment.appointment_id);
+            preparedStatement = conn.prepareStatement(sql);
+            deleted_rows = preparedStatement.executeUpdate();
+
+            stmt.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

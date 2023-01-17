@@ -53,8 +53,8 @@ public class RegisterForm extends JDialog{
                 user.surname=SurnameField.getText();
                 if(user.surname.isEmpty()==true)
                     valid=false;
-                user.age=AgeField.getText();
-                if(user.age.isEmpty()==true)
+                user.birthday =AgeField.getText();
+                if(user.birthday.isEmpty()==true)
                     valid=false;
                 user.phone_number=PhoneNumberField.getText();
                 if(user.phone_number.isEmpty()==true)
@@ -87,7 +87,7 @@ public class RegisterForm extends JDialog{
 
                     Statement stmt = conn.createStatement();
                     String sql_verify_user="SELECT * FROM users WHERE email=? AND password=?";
-                    String sql_add_user = "INSERT INTO users (email, password, name, surname, age, phone_number) " +
+                    String sql_add_user = "INSERT INTO users (email, password, name, surname, birthday, phone_number) " +
                             "VALUES (?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(sql_verify_user);
                     preparedStatement.setString(1,user.email);
@@ -107,7 +107,7 @@ public class RegisterForm extends JDialog{
                         preparedStatement.setString(2, user.password);
                         preparedStatement.setString(3, user.name);
                         preparedStatement.setString(4, user.surname);
-                        preparedStatement.setString(5, user.age);
+                        preparedStatement.setString(5, user.birthday);
                         preparedStatement.setString(6, user.phone_number);
 
                         //Insert row into the table

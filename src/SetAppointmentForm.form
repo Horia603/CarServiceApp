@@ -13,19 +13,6 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="4d43f" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-12723969"/>
-          <enabled value="true"/>
-          <font name="Bodoni MT Black" size="48" style="1"/>
-          <foreground color="-1310712"/>
-          <horizontalAlignment value="0"/>
-          <text value="Chose issues:"/>
-        </properties>
-      </component>
       <vspacer id="5ad89">
         <constraints>
           <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -38,48 +25,48 @@
       </vspacer>
       <component id="26935" class="javax.swing.JCheckBox" binding="OilChangeCheckBox">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="100" height="-1"/>
           </grid>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Oil Change"/>
+          <text value="Oil Change               -  "/>
         </properties>
       </component>
       <component id="bf7b6" class="javax.swing.JCheckBox" binding="BatteryChangeCheckBox">
         <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Battery change"/>
+          <text value="Battery change         -  "/>
         </properties>
       </component>
       <component id="a1d9d" class="javax.swing.JCheckBox" binding="HeadLightChangeCheckBox">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Head light change"/>
+          <text value="Head light change   -  "/>
         </properties>
       </component>
       <component id="8a4e7" class="javax.swing.JCheckBox" binding="TailLightChangeCheckBox">
         <constraints>
-          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Tail light change"/>
+          <text value="Tail light change      -  "/>
         </properties>
       </component>
       <vspacer id="655f1">
@@ -89,46 +76,46 @@
       </vspacer>
       <component id="5a30b" class="javax.swing.JCheckBox" binding="ExhaustRepairCheckBox">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Exhaust repair"/>
+          <text value="Exhaust repair        -  "/>
         </properties>
       </component>
       <component id="fa5a5" class="javax.swing.JCheckBox" binding="SuspensionRepairCheckBox">
         <constraints>
-          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Suspension repair"/>
+          <text value="Suspension repair    - "/>
         </properties>
       </component>
       <component id="4fe26" class="javax.swing.JCheckBox" binding="OtherProblemCheckBox">
         <constraints>
-          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Other problem"/>
+          <text value="Other problem          -       ?$"/>
         </properties>
       </component>
       <component id="e9a4d" class="javax.swing.JCheckBox" binding="MaintenanceCheckBox">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12723969"/>
-          <font name="Bodoni MT Black" size="26" style="1"/>
+          <font name="Bodoni MT Black" size="22" style="1"/>
           <foreground color="-1310712"/>
-          <text value="Maintenance"/>
+          <text value="Maintenance           -  "/>
         </properties>
       </component>
       <vspacer id="64057">
@@ -167,6 +154,19 @@
           <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
+      <component id="4d43f" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12723969"/>
+          <enabled value="true"/>
+          <font name="Bodoni MT Black" size="48" style="1"/>
+          <foreground color="-1310712"/>
+          <horizontalAlignment value="0"/>
+          <text value="Chose issues:"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
